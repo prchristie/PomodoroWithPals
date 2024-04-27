@@ -2,32 +2,141 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: 230 100% 95%;
+    --background-break: 230 100% 95%;
+    --background-work: 127 100% 95%;
+    --foreground: 230 5% 10%;
+    --card: 230 50% 90%;
+    --card-foreground: 230 5% 15%;
+    --popover: 230 100% 95%;
+    --popover-foreground: 230 100% 10%;
+    --primary: 230 45% 44.9%;
+    --primary-break: 230 45% 44.9%;
+    --primary-work: 127 44.7% 44.7%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 230 30% 70%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 192 30% 85%;
+    --muted-foreground: 230 5% 40%;
+    --accent: 192 30% 80%;
+    --accent-foreground: 230 5% 15%;
+    --destructive: 0 100% 47%;
+    --destructive-foreground: 230 5% 90%;
+    --border: 230 30% 50%;
+    --input: 230 30% 47%;
+    --ring: 230 45% 44.9%;
+    --radius: 0.5rem;
+  }
+
+  .break-light {
+    --background: 230 100% 95%;
+    --foreground: 230 5% 10%;
+    --card: 230 50% 90%;
+    --card-foreground: 230 5% 15%;
+    --popover: 230 100% 95%;
+    --popover-foreground: 230 100% 10%;
+    --primary: 230 45% 44.9%;
+    --primary-break: 230 45% 44.9%;
+    --primary-work: 127 44.7% 44.7%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 230 30% 70%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 192 30% 85%;
+    --muted-foreground: 230 5% 40%;
+    --accent: 192 30% 80%;
+    --accent-foreground: 230 5% 15%;
+    --destructive: 0 100% 47%;
+    --destructive-foreground: 230 5% 90%;
+    --border: 230 30% 50%;
+    --input: 230 30% 47%;
+    --ring: 230 45% 44.9%;
+    --radius: 0.5rem;
+  }
+
+  .break-dark {
+    --background: 230 50% 10%;
+    --foreground: 230 5% 90%;
+    --card: 230 50% 10%;
+    --card-foreground: 230 5% 90%;
+    --popover: 230 50% 5%;
+    --popover-foreground: 230 5% 90%;
+    --primary: 230 45% 44.9%;
+    --primary-break: 230 45% 44.9%;
+    --primary-work: 127 44.7% 44.7%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 230 30% 20%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 192 30% 25%;
+    --muted-foreground: 230 5% 60%;
+    --accent: 192 30% 25%;
+    --accent-foreground: 230 5% 90%;
+    --destructive: 0 100% 47%;
+    --destructive-foreground: 230 5% 90%;
+    --border: 230 30% 47%;
+    --input: 230 30% 47%;
+    --ring: 230 45% 44.9%;
+    --radius: 0.5rem;
+  }
+
+  .work-light {
+    --background: 127 100% 95%;
+    --foreground: 127 5% 10%;
+    --card: 127 50% 90%;
+    --card-foreground: 127 5% 15%;
+    --popover: 127 100% 95%;
+    --popover-foreground: 127 100% 10%;
+    --primary: 127 44.7% 44.7%;
+    --primary-break: 230 45% 44.9%;
+    --primary-work: 127 44.7% 44.7%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 127 30% 70%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 89 30% 85%;
+    --muted-foreground: 127 5% 40%;
+    --accent: 89 30% 80%;
+    --accent-foreground: 127 5% 15%;
+    --destructive: 0 100% 47%;
+    --destructive-foreground: 127 5% 90%;
+    --border: 127 30% 50%;
+    --input: 127 30% 47%;
+    --ring: 127 44.7% 44.7%;
+    --radius: 0.5rem;
+  }
+
+  .work-dark {
+    --background: 127 50% 10%;
+    --foreground: 127 5% 90%;
+    --card: 127 50% 10%;
+    --card-foreground: 127 5% 90%;
+    --popover: 127 50% 5%;
+    --popover-foreground: 127 5% 90%;
+    --primary: 127 44.7% 44.7%;
+    --primary-break: 230 45% 44.9%;
+    --primary-work: 127 44.7% 44.7%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 127 30% 20%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 89 30% 25%;
+    --muted-foreground: 127 5% 60%;
+    --accent: 89 30% 25%;
+    --accent-foreground: 127 5% 90%;
+    --destructive: 0 100% 47%;
+    --destructive-foreground: 127 5% 90%;
+    --border: 127 30% 47%;
+    --input: 127 30% 47%;
+    --ring: 127 44.7% 44.7%;
+    --radius: 0.5rem;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+@layer base {
+  * {
+    @apply border-border;
+  }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  body {
+    @apply bg-background text-foreground;
   }
 }
