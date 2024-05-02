@@ -1,36 +1,65 @@
+"use client";
+
+import { signIn, signOut, useSession } from "next-auth/react";
 import { Button, ButtonProps } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { cn } from "~/lib/utils";
+import Image from "next/image";
 
 const SelectionButton = (
-  props: ButtonProps & React.RefAttributes<HTMLButtonElement>
+  props: ButtonProps & React.RefAttributes<HTMLButtonElement>,
 ) => {
   return (
     <Button
-      className={cn(props.className, "min-w-[200px] h-full py-4")}
+      className={cn(props.className, "h-full min-w-[200px] py-4")}
       {...props}
     ></Button>
   );
 };
 
+const SignInOut = () => {
+  const { data: session } = useSession();
+
+  return (
+    <>
+      {session && <Button onClick={() => signOut()}>Log out</Button>}
+      {!session && <Button onClick={() => signIn()}>Log in</Button>}
+    </>
+  );
+};
+
+const Header = () => {
+  return (
+    <header className="flex p-2">
+      <div className="ml-auto mr-0 w-fit">
+        <SignInOut />
+      </div>
+    </header>
+  );
+};
+
 export default function Home() {
   return (
-    <main className="h-screen bg-gradient-to-br from-background-work to-background-break flex flex-col justify-center items-center gap-24">
-      <div className="flex flex-col items-center justify-center">
-        <h2 className="md:text-[3rem] text-[1.5rem]">WELCOME TO</h2>
-        <h1 className="md:text-[6rem] text-[2rem] bg-gradient-to-r from-primary-break to-primary-work text-transparent bg-clip-text drop-shadow font-semibold text-center">
-          POMODORO WITH PALS
-        </h1>
-      </div>
-      <div className="flex flex-col gap-4 text-[24px] items-center">
-        <a href="">
-          <SelectionButton>Study alone</SelectionButton>
-        </a>
-        <div className="flex gap-4 items-center">
-          <SelectionButton>Find some pals</SelectionButton>
-          <Input placeholder="Code" className="h-full" />
+    <main className="h-screen bg-gradient-to-br from-background-work to-background-break">
+      <div className="flex h-full flex-col">
+        <Header />
+        <div className="flex h-full flex-col items-center gap-28 pt-48">
+          <div className="flex flex-col items-center justify-center">
+            <h2 className="text-[1.5rem] md:text-[3rem]">WELCOME TO</h2>
+            <h1 className="bg-gradient-to-r from-primary-break to-primary-work bg-clip-text text-center text-[2rem] font-semibold text-transparent drop-shadow md:text-[6rem]">
+              POMODORO WITH PALS
+            </h1>
+          </div>
+          <div className="flex flex-col items-center gap-4 text-[24px]">
+            <a href="">
+              <SelectionButton>Study alone</SelectionButton>
+            </a>
+            <div className="flex items-center gap-4">
+              <SelectionButton>Find some pals</SelectionButton>
+              <Input placeholder="Code" className="h-full" />
+            </div>
+          </div>
         </div>
-        <SelectionButton>Join some friends</SelectionButton>
       </div>
     </main>
   );

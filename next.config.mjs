@@ -2,9 +2,18 @@
 import { fileURLToPath } from "node:url";
 import createJiti from "jiti";
 
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*",
+      },
+    ],
+  },
+};
 
 const jiti = createJiti(fileURLToPath(import.meta.url));
-jiti("./src/app/utils/env.ts");
+jiti("./src/utils/env.ts");
 
 export default nextConfig;
