@@ -3,6 +3,10 @@ import { migrate } from "drizzle-orm/postgres-js/migrator";
 import db, { pool } from "./db";
 
 // This will run migrations on the database, skipping the ones already applied
-migrate(db, { migrationsFolder: "./drizzle" })
-  .catch((e) => console.error(e))
-  .then(pool.end);
+
+const doMigrate = async () => {
+  await migrate(db, { migrationsFolder: "./drizzle" });
+  await pool.end();
+};
+
+doMigrate().then(() => console.log("Completed"));
