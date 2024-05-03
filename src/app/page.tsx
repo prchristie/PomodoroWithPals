@@ -1,10 +1,7 @@
-"use client";
-
-import { signIn, signOut, useSession } from "next-auth/react";
 import { Button, ButtonProps } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { cn } from "~/lib/utils";
-import Image from "next/image";
+import { SignInOut } from "./components/auth/signInOutButton";
 
 const SelectionButton = (
   props: ButtonProps & React.RefAttributes<HTMLButtonElement>,
@@ -14,17 +11,6 @@ const SelectionButton = (
       className={cn(props.className, "h-full min-w-[200px] py-4")}
       {...props}
     ></Button>
-  );
-};
-
-const SignInOut = () => {
-  const { data: session } = useSession();
-
-  return (
-    <>
-      {session && <Button onClick={() => signOut()}>Log out</Button>}
-      {!session && <Button onClick={() => signIn()}>Log in</Button>}
-    </>
   );
 };
 
