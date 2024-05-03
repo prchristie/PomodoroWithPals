@@ -8,7 +8,7 @@ const SelectionButton = (
 ) => {
   return (
     <Button
-      className={cn(props.className, "h-full min-w-[200px] py-4")}
+      className={cn(props.className, "min-w-44 py-4")}
       {...props}
     ></Button>
   );
@@ -26,7 +26,7 @@ const Header = () => {
 
 export default function Home() {
   return (
-    <main className="h-screen bg-gradient-to-br from-background-work to-background-break">
+    <main className="min-h-screen bg-gradient-to-br from-background-work to-background-break p-2">
       <div className="flex h-full flex-col">
         <Header />
         <div className="flex h-full flex-col items-center gap-28 pt-48">
