@@ -1,5 +1,4 @@
-import { getServerSession } from "next-auth";
-import { useServerSession } from "../../utils/use-server-session";
+import { useServerSession } from "../../utils/useServerSession";
 
 export async function GET(req: Request, res: Response) {
   const session = await useServerSession();

@@ -15,4 +15,12 @@ export const authOptions: AuthOptions = {
       clientSecret: env.DISCORD_CLIENT_SECRET!,
     }),
   ],
+  callbacks: {
+    session: async ({ session, user }) => {
+      if (session?.user) {
+        session.user.id = user.id;
+      }
+      return session;
+    },
+  },
 };
