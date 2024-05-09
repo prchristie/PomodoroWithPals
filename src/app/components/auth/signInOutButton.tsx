@@ -9,7 +9,7 @@ export const SignInOut = () => {
   return (
     <>
       {session && <Button onClick={() => signOut()}>Log out</Button>}
-      {!session && <Button onClick={() => signIn()}>Log in</Button>}
+      {!session && <Button onClick={() => signIn()}>Login</Button>}
     </>
   );
 };
