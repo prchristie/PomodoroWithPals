@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import db from "~/db/db";
-import { rooms } from "~/db/schemas";
-import { CreateRoomResponse, ErrorResponse } from "~/dto/createRoomDto";
-import { useServerSession } from "~/utils/useServerSession";
+import db from "~/backend/db/db";
+import { rooms } from "~/backend/db/schemas";
+import { CreateRoomResponse, ErrorResponse } from "~/core/dto/createRoomDto";
+import { useServerSession } from "~/core/utils/useServerSession";
 
 export async function POST(): Promise<
   NextResponse<CreateRoomResponse | ErrorResponse>

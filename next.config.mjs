@@ -14,6 +14,6 @@ const nextConfig = {
 };
 
 const jiti = createJiti(fileURLToPath(import.meta.url));
-jiti("./src/utils/env.ts");
+jiti("./src/core/utils/env.ts");
 
 export default nextConfig;

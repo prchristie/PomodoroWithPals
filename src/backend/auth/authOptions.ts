@@ -1,9 +1,9 @@
 import NextAuth, { AuthOptions } from "next-auth";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
-import db from "~/db/db";
 import { Adapter } from "next-auth/adapters";
 import DiscordProvider from "next-auth/providers/discord";
-import { env } from "~/utils/env";
+import { env } from "~/core/utils/env";
+import db from "../db/db";
 
 export const authOptions: AuthOptions = {
   // Apparently fixes the TS issue with the DrizzleAdapter being fucked??

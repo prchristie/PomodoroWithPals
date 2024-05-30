@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
-import { CreateRoomResponse } from "~/dto/createRoomDto";
+import { CreateRoomResponse } from "~/core/dto/createRoomDto";
 
 const createRoom = async () => {
   const res = await axios.post("/api/room");
