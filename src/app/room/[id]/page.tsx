@@ -74,7 +74,9 @@ const PomodoroTimer = () => {
         </Button>
         <Dialog>
           <DialogTrigger>
-            <CogIcon className="h-8 w-8 stroke-[2.5] text-primary" />
+            <Button variant="ghost">
+              <CogIcon className="h-8 w-8 stroke-[2.5] text-primary" />
+            </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
