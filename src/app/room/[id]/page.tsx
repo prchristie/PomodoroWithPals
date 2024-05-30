@@ -1,10 +1,20 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Button, ButtonProps } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { cn } from "~/lib/utils";
+import { CogIcon } from "lucide-react";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+} from "~/components/ui/dialog";
+import { DialogHeader } from "~/components/ui/dialog";
+import { Switch } from "~/components/ui/switch";
 
 export default function RoomPage({ params }: { params: { id: string } }) {
   return (
@@ -32,7 +42,6 @@ const PomodoroTimer = () => {
   const [mode, setMode] = useState<"work" | "break">("work");
   const [timeS, setTimeS] = useState(workTime);
   const [started, setStarted] = useState(false);
-  const [openSettingsModal, setOpenSettingsModal] = useState(false);
 
   useInterval(() => setTimeS((t) => t - 1), started ? 1000 : 0);
   useEffect(() => setTimeS(workTime), [workTime]);
@@ -45,7 +54,7 @@ const PomodoroTimer = () => {
   if (timeS <= 0) {
     setMode((m) => (m === "break" ? "work" : "break"));
     setStarted(false);
-    setTimeS(mode === "break" ? breakTime : workTime);
+    setTimeS(mode === "break" ? workTime : breakTime);
   }
 
   const seconds = timeS % 60;
@@ -63,54 +72,59 @@ const PomodoroTimer = () => {
         <Button onClick={() => setStarted((s) => !s)}>
           {started ? "Stop" : "Start"}
         </Button>
-        <Button onClick={() => setOpenSettingsModal(true)}>Settings :O</Button>
+        <Dialog>
+          <DialogTrigger>
+            <CogIcon className="h-8 w-8 stroke-[2.5] text-primary" />
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle className="p-4 py-8">Settings</DialogTitle>
+              <DialogDescription>
+                <Settings
+                  workTime={workTime}
+                  setWorkTime={setWorkTime}
+                  breakTime={breakTime}
+                  setBreakTime={setBreakTime}
+                />
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       </div>
-      {openSettingsModal && (
-        <>
-          <div
-            className="absolute h-screen w-screen"
-            onClick={() => setOpenSettingsModal(false)}
-          ></div>
-          <div className="absolute flex h-96 w-96 items-center justify-center">
-            <SettingsPage
-              workTime={workTime}
-              setWorkTime={setWorkTime}
-              breakTime={breakTime}
-              setBreakTime={setBreakTime}
-            />
-          </div>
-        </>
-      )}
     </>
   );
 };
 
-const SettingsPage = (props: {
+const Settings = (props: {
   workTime: number;
   setWorkTime: (time: number) => void;
   breakTime: number;
   setBreakTime: (time: number) => void;
 }) => {
   return (
-    <div className="flex h-full w-full justify-center rounded bg-primary/95 p-4">
-      <form className="flex w-full flex-col gap-6">
-        <label className="flex items-center justify-around">
-          <span>Work time</span>
-          <Input
-            onChange={(e) => props.setWorkTime(Number(e.target.value) * 60)}
-            className="w-40 text-input"
-            value={props.workTime / 60}
-          />
-        </label>
-        <label className="flex justify-around">
-          <span>Break time</span>
-          <Input
-            onChange={(e) => props.setBreakTime(Number(e.target.value) * 60)}
-            className="w-40"
-            value={props.breakTime / 60}
-          />
-        </label>
-      </form>
-    </div>
+    <form className="flex flex-col gap-6">
+      <label className="flex items-center justify-around">
+        Work time
+        <Input
+          onChange={(e) => props.setWorkTime(Number(e.target.value) * 60)}
+          className="w-40"
+          type="number"
+          defaultValue={props.workTime / 60}
+        />
+      </label>
+      <label className="flex items-center justify-around">
+        Break time
+        <Input
+          onChange={(e) => props.setBreakTime(Number(e.target.value) * 60)}
+          className="w-40"
+          type="number"
+          defaultValue={props.breakTime / 60}
+        />
+      </label>
+      <label className="flex items-center justify-around">
+        Auto play
+        <Switch />
+      </label>
+    </form>
   );
 };
