@@ -34,6 +34,12 @@ const useInterval = (callback: () => void, ms: number) => {
   });
 };
 
+function useAlertSound() {
+  const audio = new Audio("/alert.mp3");
+  audio.volume = 0.2;
+  return audio;
+}
+
 const PomodoroTimer = () => {
   const { setTheme } = useTheme();
 
@@ -42,6 +48,7 @@ const PomodoroTimer = () => {
   const [mode, setMode] = useState<"work" | "break">("work");
   const [timeS, setTimeS] = useState(workTime);
   const [started, setStarted] = useState(false);
+  const audio = useAlertSound();
 
   useInterval(() => setTimeS((t) => t - 1), started ? 1000 : 0);
   useEffect(() => setTimeS(workTime), [workTime]);
@@ -55,6 +62,7 @@ const PomodoroTimer = () => {
     setMode((m) => (m === "break" ? "work" : "break"));
     setStarted(false);
     setTimeS(mode === "break" ? workTime : breakTime);
+    audio.play();
   }
 
   const seconds = timeS % 60;
